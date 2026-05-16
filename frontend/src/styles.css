@@ -2,3 +2,38 @@ body {
   margin: 0;
   background: #f5f7fb;
 }
+
+/* Angular Material theme */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.app-shell {
+  padding: 0;
+}
+
+table {
+  width: 100%;
+}
+
+.custom-legend {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.6);
+}
+.swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  display: inline-block;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08) inset;
+}
+.legend-text { flex: 1 1 auto; }
+.legend-meta { color: #444; font-size: 0.95rem; }
