@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - '5432:5432'
+
+  api:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: '5432'
+      DATABASE_NAME: appdb
+      DATABASE_USER: appuser
+      DATABASE_PASSWORD: secret
+      PORT: '3000'
+    ports:
+      - '3000:3000'
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '4200:4200'
+    environment:
+      API_URL: http://localhost:3000
+    depends_on:
+      - api

@@ -1,0 +1,66 @@
+<div class="app-shell">
+  <h1>Powerball Drawings</h1>
+
+  <section class="filters">
+    <label>
+      Draw Date:
+      <input type="date" [(ngModel)]="date" />
+    </label>
+    <label>
+      From:
+      <input type="date" [(ngModel)]="minDate" />
+    </label>
+    <label>
+      To:
+      <input type="date" [(ngModel)]="maxDate" />
+    </label>
+    <label>
+      White Ball:
+      <input type="number" min="1" max="69" [(ngModel)]="ball" />
+    </label>
+    <label>
+      Powerball:
+      <input type="number" min="1" max="26" [(ngModel)]="powerball" />
+    </label>
+    <label>
+      Power Play:
+      <input type="text" [(ngModel)]="powerPlay" placeholder="2x, 3x" />
+    </label>
+    <div class="button-row">
+      <button (click)="loadDrawings()">Apply Filters</button>
+      <button (click)="resetFilters()">Reset</button>
+    </div>
+  </section>
+
+  <section class="status">
+    <span *ngIf="loading">Loading...</span>
+    <span *ngIf="error" class="error">{{ error }}</span>
+  </section>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>White 1</th>
+        <th>White 2</th>
+        <th>White 3</th>
+        <th>White 4</th>
+        <th>White 5</th>
+        <th>Powerball</th>
+        <th>Power Play</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let draw of drawings">
+        <td>{{ draw.draw_date }}</td>
+        <td>{{ draw.white_ball_1 }}</td>
+        <td>{{ draw.white_ball_2 }}</td>
+        <td>{{ draw.white_ball_3 }}</td>
+        <td>{{ draw.white_ball_4 }}</td>
+        <td>{{ draw.white_ball_5 }}</td>
+        <td>{{ draw.powerball }}</td>
+        <td>{{ draw.power_play }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
