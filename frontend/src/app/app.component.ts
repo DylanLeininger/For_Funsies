@@ -61,9 +61,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       '#F06292',
     ],
   };
-  date = '';
-  minDate = '';
-  maxDate = '';
+  date: Date | null = null;
+  minDate: Date | null = null;
+  maxDate: Date | null = null;
   ball: number | null = null;
   powerball: number | null = null;
   powerPlay = '';
@@ -93,13 +93,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     let params = new HttpParams();
 
     if (this.date) {
-      params = params.set('date', this.date);
+      params = params.set('date', this.formatDate(this.date));
     }
     if (this.minDate) {
-      params = params.set('minDate', this.minDate);
+      params = params.set('minDate', this.formatDate(this.minDate));
     }
     if (this.maxDate) {
-      params = params.set('maxDate', this.maxDate);
+      params = params.set('maxDate', this.formatDate(this.maxDate));
     }
     if (this.ball !== null) {
       params = params.set('ball', this.ball.toString());
@@ -130,13 +130,17 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   resetFilters() {
-    this.date = '';
-    this.minDate = '';
-    this.maxDate = '';
+    this.date = null;
+    this.minDate = null;
+    this.maxDate = null;
     this.ball = null;
     this.powerball = null;
     this.powerPlay = '';
     this.loadDrawings();
+  }
+
+  private formatDate(date: Date): string {
+    return date.toISOString().split('T')[0];
   }
 
   private computeCharts(data: Drawing[]) {

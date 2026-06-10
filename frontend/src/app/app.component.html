@@ -4,17 +4,23 @@
   <section class="filters" style="margin: 16px; display:flex; gap:12px; flex-wrap:wrap;">
     <mat-form-field appearance="outline">
       <mat-label>Draw Date</mat-label>
-      <input matInput type="date" [(ngModel)]="date" />
+      <input matInput [matDatepicker]="pickerDate" [(ngModel)]="date" />
+      <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+      <mat-datepicker #pickerDate></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>From</mat-label>
-      <input matInput type="date" [(ngModel)]="minDate" />
+      <input matInput [matDatepicker]="pickerMin" [(ngModel)]="minDate" />
+      <mat-datepicker-toggle matSuffix [for]="pickerMin"></mat-datepicker-toggle>
+      <mat-datepicker #pickerMin></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>To</mat-label>
-      <input matInput type="date" [(ngModel)]="maxDate" />
+      <input matInput [matDatepicker]="pickerMax" [(ngModel)]="maxDate" />
+      <mat-datepicker-toggle matSuffix [for]="pickerMax"></mat-datepicker-toggle>
+      <mat-datepicker #pickerMax></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
